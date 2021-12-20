@@ -1,0 +1,32 @@
+pipeline {
+
+    agent { label 'docker-slave-ssh' }
+    stages {
+        stage('Checkout') {
+              steps {
+                git branch: 'main',
+                    url: 'https://github.com/jenkinsci/prometheus-plugin'               
+            }          
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+                sh 'mvn hpi:hpi'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Store artifact') {
+            step ([$class: 'CopyArtifact',
+                    projectName: 'prometheus-prod',
+                    filter: "packages/infra*.zip",
+                    target: 'Infra']);
+
+        }        
+                      
+    }
+   
+}
