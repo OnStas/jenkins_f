@@ -1,0 +1,37 @@
+pipeline {
+
+    agent { label 'docker-slave-ssh' }
+    stages {
+        stage('Clone') {
+              steps {
+                git branch: 'main',
+                    url: 'https://github.com/OnStas/jenkins_test.git'               
+            }          
+        }
+        stage('Build') {
+            steps {
+                sh 'chmod +x build.sh'
+                sh './build.sh > artifact.txt'
+                archiveArtifacts(artifacts: '**/artifact.txt', followSymlinks: false)
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'chmod +x test.sh'
+                sh './test.sh > test_result.txt' 
+            }
+        }
+                      
+    }
+    post {
+        always {
+            archiveArtifacts(artifacts: '**/artifact.txt', followSymlinks: false)
+        }
+        failure {
+            archiveArtifacts(artifacts: '**/test_result.txt', followSymlinks: false)
+        }
+
+    }
+
+
+}
