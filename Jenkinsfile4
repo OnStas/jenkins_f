@@ -1,0 +1,32 @@
+def sleep1 = Math.abs(new Random().nextInt() % 60) + 10
+def sleep2 = Math.abs(new Random().nextInt() % 60) + 10
+def exit1 = Math.abs(new Random().nextInt() % 3) + 0
+def autoCancelled = false
+node ("docker-slave-ssh")  {
+    stage('Build') {
+        echo "${sleep1}"
+        sh "sleep $sleep1"
+        try {
+            if (exit1 != 0){
+            sh 'exit 1'}
+            else {
+            echo 'Building..'  
+            }
+        }
+        catch (err) {
+        echo "Failed: ${err}"}
+    }
+    stage('Test') {
+        echo "${sleep2}"
+        sh "sleep $sleep2"
+        try {
+            if (exit1 != 0){
+            sh 'exit 1'}
+            else {
+            echo 'Testing..'  
+            }
+        }
+        catch (err) {
+        echo "Failed: ${err}"}
+    }
+}
