@@ -17,8 +17,8 @@ node("docker-jnlp-slave") {
         }
         echo 'Test successful'
     } catch (err) {
-        echo 'Teas failed' > test_result.txt
-        archiveArtifacts(artifacts: '**/test_result.txt', followSymlinks: false)
+        echo 'Test failed' > test_result.txt
+        archiveArtifacts(artifacts: '**/*.txt', followSymlinks: false)
         echo "Failed: ${err}"
     }
 }
