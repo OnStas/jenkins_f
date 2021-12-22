@@ -1,0 +1,24 @@
+node("docker-jnlp-slave") {
+    stage("Clone") {
+         git branch: 'main',
+                    url: 'https://github.com/OnStas/jenkins_test.git'
+    }
+    
+    stage("Build") {
+        sh 'chmod +x build.sh'
+        sh './build.sh > artifact.txt'
+        archiveArtifacts(artifacts: '**/artifact.txt', followSymlinks: false)
+    }
+    
+    try {
+    stage('Test') {
+        sh 'chmod +x test.sh'
+        sh './test.sh' 
+        }
+        echo 'Test successful'
+    } catch (err) {
+        echo 'Teas failed' > test_result.txt
+        archiveArtifacts(artifacts: '**/test_result.txt', followSymlinks: false)
+        echo "Failed: ${err}"
+    }
+}
