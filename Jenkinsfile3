@@ -4,8 +4,9 @@ pipeline {
     stages {
         stage('Checkout') {
               steps {
-                git branch: 'main',
-                    url: 'https://github.com/jenkinsci/prometheus-plugin'               
+                git branch: 'master',
+                    url: 'https://github.com/jenkinsci/prometheus-plugin.git' 
+                sh 'git checkout tags/prometheus-2.0.10'
             }          
         }
         stage('Build') {
@@ -19,14 +20,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Store artifact') {
-            step ([$class: 'CopyArtifact',
-                    projectName: 'prometheus-prod',
-                    filter: "packages/infra*.zip",
-                    target: 'Infra']);
-
-        }        
-                      
+        stage('Copy Archive') {
+             steps {
+                script {
+            archiveArtifacts artifacts: '**/*.jar', fingerprint: true
+        }
     }
-   
+    }  
 }
+
