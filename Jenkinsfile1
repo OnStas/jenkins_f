@@ -11,28 +11,25 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'chmod +x build.sh'
-                sh './build.sh > artifact.txt'
-                archiveArtifacts(artifacts: '**/artifact.txt', followSymlinks: false)
+                sh './build.sh &> artifact.txt'
             }
         }
         stage('Test') {
             steps {
                 sh 'chmod +x test.sh'
-                sh './test.sh' 
+                sh './test.sh &> test_result.txt' 
             }
-        }
-                      
+        }                      
     }
     post {
         always {
             archiveArtifacts(artifacts: '**/artifact.txt', followSymlinks: false)
         }
         failure {
-            sh 'echo "Test stage failed" > test_result.txt'
             archiveArtifacts(artifacts: '**/test_result.txt', followSymlinks: false)
         }
-
     }
+}
 
 
 }
