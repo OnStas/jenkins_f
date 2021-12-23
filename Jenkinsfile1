@@ -11,13 +11,13 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'chmod +x build.sh'
-                sh './build.sh &> artifact.txt'
+                sh './build.sh 2>&1 | tee artifact.txt'
             }
         }
         stage('Test') {
             steps {
                 sh 'chmod +x test.sh'
-                sh './test.sh &> test_result.txt' 
+                sh './test.sh 2>&1 | tee test_result.txt' 
             }
         }                      
     }
