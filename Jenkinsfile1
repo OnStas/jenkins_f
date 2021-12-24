@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
               steps {
-                git branch: 'main',
+                git branch: 'fix-123',
                     url: 'https://github.com/OnStas/jenkins_test.git'
                 echo "PR id is ${CHANGE_ID}" 
             }          
@@ -28,6 +28,9 @@ pipeline {
         }
         failure {
             archiveArtifacts(artifacts: '**/test_result.txt', followSymlinks: false)
+        }
+        success{
+            sh 'git push origin main'
         }
     }
 }
