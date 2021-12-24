@@ -6,7 +6,6 @@ pipeline {
               steps {
                 git branch: 'fix-123',
                     url: 'https://github.com/OnStas/jenkins_test.git'
-                echo "PR id is ${CHANGE_ID}" 
             }          
         }
         stage('Build') {
