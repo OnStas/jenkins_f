@@ -5,7 +5,8 @@ pipeline {
         stage('Clone') {
               steps {
                 git branch: 'main',
-                    url: 'https://github.com/OnStas/jenkins_test.git'               
+                    url: 'https://github.com/OnStas/jenkins_test.git'
+                echo "PR id is ${CHANGE_ID}" 
             }          
         }
         stage('Build') {
