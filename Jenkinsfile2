@@ -1,6 +1,6 @@
 node("docker-jnlp-slave") {
     stage("Clone") {
-         git branch: 'fix-123',
+         git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
          sh 'printenv'
     }    
