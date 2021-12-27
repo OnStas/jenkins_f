@@ -21,7 +21,7 @@ pipeline {
                     //cd jenkins_test
                    // git branch: Branch, url: 'https://github.com/OnStas/jenkins_test.git' 
                     }
-                    git clone --branch ${Branch} https://github.com/OnStas/jenkins_test.git
+                    git clone --branch ${Branch} 'https://github.com/OnStas/jenkins_test.git'
                     //sh 'git checkout ${Branch}'
                 }
 
