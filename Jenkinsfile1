@@ -1,4 +1,13 @@
-def html = "https://api.github.com/repos/OnStas/jenkins_test/pulls".toURL().tex
+// def html = "https://api.github.com/repos/OnStas/jenkins_test/pulls".toURL().tex
+
+// GET
+def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
+def getRC = get.getResponseCode();
+println(getRC);
+if(getRC.equals(200)) {
+    println(get.getInputStream().getText());
+}
+
 pipeline {
 
     agent { label 'docker-slave-ssh' }
