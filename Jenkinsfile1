@@ -13,11 +13,12 @@ pipeline {
                     //println(getRC);
                     if(getRC.equals(200)) {
                     def html =get.getInputStream().getText();
-                    def number = html.split("number\":")[1].split(',')[0];
+                    def ID = html.split("number\":")[1].split(',')[0];
                     println(number);
                     }
                 }
                 sh 'printenv'
+                sh 'git fetch origin pull/$ID/head:$BRANCHNAME'
                 sh 'git fetch origin refs/pull-requests/*:refs/pull-requests/*'
                 sh 'git name-rev --name-only --refs="refs/pull-requests/*/from" HEAD'
             }          
