@@ -25,7 +25,7 @@ pipeline {
                 }
 
                echo "${Branch}"
-               git branch: "$Branch", url: 'https://github.com/OnStas/jenkins_test.git'      
+               git branch: "${Branch}", url: 'https://github.com/OnStas/jenkins_test.git'      
                sh 'printenv'
 
             }        
