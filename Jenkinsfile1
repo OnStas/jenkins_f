@@ -1,15 +1,3 @@
-// def html = "https://api.github.com/repos/OnStas/jenkins_test/pulls".toURL().tex
-
-// GET
-def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
-def getRC = get.getResponseCode();
-//println(getRC);
-if(getRC.equals(200)) {
-    def html =get.getInputStream().getText();
-    def number = html.split("number\":")[1].split(',')[0];
-    println(number);
-}
-
 pipeline {
 
     agent { label 'docker-slave-ssh' }
@@ -18,7 +6,17 @@ pipeline {
               steps {
                 git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
-
+                script {
+                    // GET
+                    def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
+                    def getRC = get.getResponseCode();
+                    //println(getRC);
+                    if(getRC.equals(200)) {
+                    def html =get.getInputStream().getText();
+                    def number = html.split("number\":")[1].split(',')[0];
+                    println(number);
+                    }
+                }
                 sh 'printenv'
                 sh 'git fetch origin refs/pull-requests/*:refs/pull-requests/*'
                 sh 'git name-rev --name-only --refs="refs/pull-requests/*/from" HEAD'
