@@ -24,7 +24,7 @@ pipeline {
                     //sh 'git checkout ${Branch}'
                 }
 
-               echo "${Branch}"
+               echo PR-"${Branch}"
                git branch: "${Branch}", url: 'https://github.com/OnStas/jenkins_test.git'      
                sh 'printenv'
 
