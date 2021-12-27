@@ -33,9 +33,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-               sh 'ls -l'
-                sh 'chmod +x jenkins_test/build.sh'
-                sh '.jenkins_test/build.sh 2>&1 | tee artifact.txt'
+               sh 'cd jenkins_test'
+                sh 'chmod +x build.sh'
+                sh '.build.sh 2>&1 | tee artifact.txt'
             }
         }
         stage('Test') {
