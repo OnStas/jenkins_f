@@ -22,7 +22,7 @@ pipeline {
                     //cd jenkins_test
                    // git branch: Branch, url:  
                     }
-                     git branch: Branch,  url: repoUrl       
+                    ["git", "clone", "https://github.com/OnStas/jenkins_test.git"].execute()   
                 }
 
                echo PR-"${Branch}"
