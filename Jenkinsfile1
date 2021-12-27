@@ -24,9 +24,15 @@ pipeline {
                 }
                echo 'Branch = $Branch'
                echo "${Branch}"
+               git([branches: [
+                   [name: '*/${Branch}'], 
+                   [name: 'refs/tags/*:refs/tags/*']], 
+                   credentialsId: CREDENTIALS_ID_GIT,
+                   url: 'https://github.com/OnStas/jenkins_test.git'])
+               
                sh 'printenv'
-                  git branch: '${Branch}',
-                       url: 'https://github.com/OnStas/jenkins_test.git'
+                //  git branch: '${Branch}',
+                //       url: 'https://github.com/OnStas/jenkins_test.git'
             }        
         }
         stage('Build') {
