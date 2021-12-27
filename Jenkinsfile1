@@ -34,14 +34,14 @@ pipeline {
         stage('Build') {
             steps {
               
-                sh 'chmod +x build.sh'
-                sh '.build.sh 2>&1 | tee artifact.txt'
+                sh 'chmod +x jenkins_test/build.sh'
+                sh '.jenkins_test/build.sh 2>&1 | tee artifact.txt'
             }
         }
         stage('Test') {
             steps {
-                sh 'chmod +x test.sh'
-                sh './test.sh 2>&1 | tee test_result.txt' 
+                sh 'chmod +x jenkins_test/test.sh'
+                sh '.jenkins_test/test.sh 2>&1 | tee test_result.txt' 
             }
         }                      
     }
