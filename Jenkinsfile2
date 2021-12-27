@@ -11,8 +11,8 @@ node("docker-jnlp-slave") {
         println(PR_ID);
         } 
         //echo ${Branch}
-        echo $Branch
-        sh "git fetch origin pull/$Branch/head:test_br"
+        echo $PR_ID
+        sh "git fetch origin pull/$PR_ID/head:test_br"
         sh 'git checkout test_br'
         sh 'printenv'      
     }
