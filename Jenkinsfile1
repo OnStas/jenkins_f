@@ -6,6 +6,9 @@ pipeline {
               steps {
                 git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
+                script {
+                    git ls-remote origin ‘pull/*/head’ | grep -F -f <(git rev-parse HEAD) | awk -F’/' ‘{print $3}’
+                    }  
                 sh 'printenv'
                 sh 'git fetch origin refs/pull-requests/*:refs/pull-requests/*'
                 sh 'git name-rev --name-only --refs="refs/pull-requests/*/from" HEAD'
