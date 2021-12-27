@@ -16,7 +16,7 @@ pipeline {
                     def Branch = html.split("ref\":")[1].split(',')[0];
                     println(Branch);
                     }
-                    sh 'git clone --branch ${Branch} https://github.com/OnStas/jenkins_test.gi'
+                    sh 'git clone --branch $Branch https://github.com/OnStas/jenkins_test.gi'
                     //sh 'git checkout ${Branch}'
                 }
                 sh 'printenv'
@@ -25,23 +25,24 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'chmod +x build.sh'
-                sh './build.sh 2>&1 | tee artifact.txt'
+              
+                sh 'chmod +x jenkins_test/build.sh'
+                sh './jenkins_test/build.sh 2>&1 | tee artifact.txt'
             }
         }
         stage('Test') {
             steps {
-                sh 'chmod +x test.sh'
-                sh './test.sh 2>&1 | tee test_result.txt' 
+                sh 'chmod +x jenkins_test/test.sh'
+                sh './jenkins_test/test.sh 2>&1 | tee test_result.txt' 
             }
         }                      
     }
     post {
         always {
-            archiveArtifacts(artifacts: '**/artifact.txt', followSymlinks: false)
+            archiveArtifacts(artifacts: '**/jenkins_test/artifact.txt', followSymlinks: false)
         }
         failure {
-            archiveArtifacts(artifacts: '**/test_result.txt', followSymlinks: false)
+            archiveArtifacts(artifacts: '**/jenkins_test/test_result.txt', followSymlinks: false)
         }
     }
 }
