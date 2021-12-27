@@ -1,13 +1,26 @@
 node("docker-jnlp-slave") {
     stage("Clone") {
-         git branch: 'main',
+        git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
-         sh 'printenv'
-    }    
+                    
+        def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
+        def getRC = get.getResponseCode();
+        if(getRC.equals(200)) {
+        def html =get.getInputStream().getText();
+        PR_ID = html.split("number\":")[1].split(',')[0];
+        println(PR_ID);
+        } 
+        echo "${Branch}"
+        sh "git fetch origin pull/$Branch/head:test_br"
+        sh 'git checkout test_br'
+        sh 'printenv'      
+    }
+    
     stage("Build") {
         sh 'chmod +x build.sh'
         sh './build.sh 2>&1 | tee artifact.txt'
-    }    
+    }
+    
     try {
     stage('Test') {
         sh 'chmod +x test.sh'
@@ -19,6 +32,5 @@ node("docker-jnlp-slave") {
         echo "Failed: ${err}"
     } finally {
        archiveArtifacts(artifacts: '**/artifact.txt', followSymlinks: false)
-      
     }
 }
