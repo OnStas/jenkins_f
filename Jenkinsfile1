@@ -25,7 +25,7 @@ pipeline {
                     ["git", "clone", "https://github.com/OnStas/jenkins_test.git"].execute()   
                 }
 
-               echo PR-"${Branch}"
+               //echo PR-"${Branch}"
               // git branch: 'PR-13', url: 'https://github.com/OnStas/jenkins_test.git'      
                sh 'printenv'
 
