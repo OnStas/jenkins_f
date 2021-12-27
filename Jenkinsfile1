@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Clone') {
               steps {
-                git branch: 'main',
-                    url: 'https://github.com/OnStas/jenkins_test.git'
+                //git branch: 'main',
+                  //  url: 'https://github.com/OnStas/jenkins_test.git'
                 script {
                     // GET
                     def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
@@ -16,8 +16,8 @@ pipeline {
                     def Branch = html.split("ref\":")[1].split(',')[0];
                     println(Branch);
                     }
-                    
-                    sh 'git checkout ${Branch}'
+                    sh 'git clone --branch ${Branch} https://github.com/OnStas/jenkins_test.gi'
+                    //sh 'git checkout ${Branch}'
                 }
                 sh 'printenv'
                 
