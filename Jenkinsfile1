@@ -23,12 +23,11 @@ pipeline {
                     //sh '''git clone --branch $Branch git@github.com:OnStas/jenkins_test.git'''
                     //sh 'git checkout ${Branch}'
                 }
-               echo 'Branch = $Branch'
-               echo ${Branch}
-               git branch: ${Branch}, url: 'https://github.com/OnStas/jenkins_test.git'      
+
+               echo '${Branch}'
+               git branch: '$Branch', url: 'https://github.com/OnStas/jenkins_test.git'      
                sh 'printenv'
-              //  git branch: '',
-                 //   url: 'git@github.com:OnStas/jenkins_test.git'
+
             }        
         }
         stage('Build') {
