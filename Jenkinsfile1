@@ -6,7 +6,7 @@ def getRC = get.getResponseCode();
 //println(getRC);
 if(getRC.equals(200)) {
     def html =get.getInputStream().getText();
-    def number = html.split("number")[1];
+    def number = html.split("number\":")[1];
     println(number);
 }
 
