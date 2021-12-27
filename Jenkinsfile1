@@ -14,7 +14,7 @@ pipeline {
                     if(getRC.equals(200)) {
                     def html =get.getInputStream().getText();
                     def Branch = html.split("ref\":")[1].split(',')[0];
-                    println(number);
+                    println(Branch);
                     }
                     
                     sh 'git checkout ${Branch}'
