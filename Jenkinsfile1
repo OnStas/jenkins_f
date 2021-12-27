@@ -1,4 +1,5 @@
 def Branch
+String repoUrl = "https://github.com/OnStas/jenkins_test.git"
 pipeline {
 
     agent { label 'docker-slave-ssh' }
@@ -19,10 +20,9 @@ pipeline {
                     println(Branch);
                     //git clone 'https://github.com/OnStas/jenkins_test.git'
                     //cd jenkins_test
-                   // git branch: Branch, url: 'https://github.com/OnStas/jenkins_test.git' 
+                   // git branch: Branch, url:  
                     }
-                    git clone --branch ${Branch} 'https://github.com/OnStas/jenkins_test.git'
-                    //sh 'git checkout ${Branch}'
+                     git branch: Branch,  url: repoUrl       
                 }
 
                echo PR-"${Branch}"
