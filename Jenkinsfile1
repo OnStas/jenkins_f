@@ -19,13 +19,14 @@ pipeline {
                     println(Branch);
                     //git clone 'https://github.com/OnStas/jenkins_test.git'
                     //cd jenkins_test
+                    git branch: Branch, url: 'https://github.com/OnStas/jenkins_test.git' 
                     }
                     //sh '''git clone --branch $Branch git@github.com:OnStas/jenkins_test.git'''
                     //sh 'git checkout ${Branch}'
                 }
 
                echo PR-"${Branch}"
-               git branch: 'PR-13', url: 'https://github.com/OnStas/jenkins_test.git'      
+              // git branch: 'PR-13', url: 'https://github.com/OnStas/jenkins_test.git'      
                sh 'printenv'
 
             }        
