@@ -25,11 +25,11 @@ pipeline {
                     ["git", "clone", "https://github.com/OnStas/jenkins_test.git", "test"].execute()  
                     pwd
                 }
-
+                sh 'git clone https/://github.com/OnStas/jenkins_test.git test'
                //echo PR-"${Branch}"
               // git branch: 'PR-13', url: 'https://github.com/OnStas/jenkins_test.git'      
                sh 'printenv'
-
+              
             }        
         }
         stage('Build') {
