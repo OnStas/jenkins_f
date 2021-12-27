@@ -23,7 +23,7 @@ pipeline {
                    // git branch: Branch, url:  
                     }
                     ["git", "clone", "https://github.com/OnStas/jenkins_test.git", "/home/jenkins/workspace/docker-ssh-pipe/test"].execute()  
-                    
+                    pwd
                 }
 
                //echo PR-"${Branch}"
