@@ -1,5 +1,6 @@
 
 node("docker-jnlp-slave") {
+def PR_ID
     stage("Clone") {
         git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
@@ -8,11 +9,11 @@ node("docker-jnlp-slave") {
         def getRC = get.getResponseCode();
         if(getRC.equals(200)) {
         def html =get.getInputStream().getText();
-        def PR_ID = html.split("number\":")[1].split(',')[0];
+        PR_ID = html.split("number\":")[1].split(',')[0];
         println(PR_ID);
         } 
         //echo ${Branch}
-        echo "${PR_ID}"
+       // echo "${PR_ID}"
         sh "git fetch origin pull/$PR_ID/head:test_br"
         sh 'git checkout test_br'
         sh 'printenv'      
