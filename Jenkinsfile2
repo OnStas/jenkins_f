@@ -10,8 +10,9 @@ node("docker-jnlp-slave") {
         PR_ID = html.split("number\":")[1].split(',')[0];
         println(PR_ID);
         } 
-        echo "${Branch}"
-        sh "git fetch origin pull/${Branch}/head:test_br"
+        //echo ${Branch}
+        echo $Branch
+        sh "git fetch origin pull/$Branch/head:test_br"
         sh 'git checkout test_br'
         sh 'printenv'      
     }
