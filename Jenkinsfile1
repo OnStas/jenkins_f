@@ -6,9 +6,16 @@ pipeline {
               steps {
                 git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
-                script {
-                    git ls-remote origin ‘pull/*/head’ | grep -F -f <(git rev-parse HEAD) | awk -F’/' ‘{print $3}’
-                    }  
+                script {    
+                def gitCommitSHA = sh(returnStdout: true, script: 'git rev-parse  HEAD').trim()
+                def allPRs = sh(returnStdout: true, script: "origin ‘pull/*/head’")
+                List result = allPRs.split( '\n' ).findAll { it.contains(gitCommitSHA) && it.contains("refs/pull") }
+                if (result.size() ==1 ){
+                 def str = result[0]
+                def prId = str.substring(str.indexOf("pull")+5,str.lastIndexOf("head")-1)
+                echo "Pull request id: ${prId}"
+                }}
+                
                 sh 'printenv'
                 sh 'git fetch origin refs/pull-requests/*:refs/pull-requests/*'
                 sh 'git name-rev --name-only --refs="refs/pull-requests/*/from" HEAD'
