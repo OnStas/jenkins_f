@@ -1,3 +1,4 @@
+def Branch
 pipeline {
 
     agent { label 'docker-slave-ssh' }
@@ -21,7 +22,7 @@ pipeline {
                     //sh 'git clone --branch $Branch https://github.com/OnStas/jenkins_test.gi'
                     //sh 'git checkout ${Branch}'
                 }
-                echo 'Branch = ${Branch}'
+                echo 'Branch = $Branch'
                sh 'printenv'
                   //git branch: '$Branch',
                      //  url: 'https://github.com/OnStas/jenkins_test.git'
