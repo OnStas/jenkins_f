@@ -22,7 +22,7 @@ pipeline {
                     //sh 'git checkout ${Branch}'
                 }
                // sh 'printenv'
-                  git branch: '${Branch}',
+                  git branch: '$Branch',
                        url: 'https://github.com/OnStas/jenkins_test.git'
             }        
         }
