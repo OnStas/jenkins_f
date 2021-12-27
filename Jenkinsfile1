@@ -15,13 +15,14 @@ pipeline {
                     //println(getRC);
                     if(getRC.equals(200)) {
                     def html =get.getInputStream().getText();
-                    Branch = html.split("ref\":")[1].split(',')[0];
+                    Branch = html.split("number\":")[1].split(',')[0];
                     println(Branch);
                     //git clone 'https://github.com/OnStas/jenkins_test.git'
                     //cd jenkins_test
                    // git branch: Branch, url:  
                     }
-                   // ["git", "clone", "https://github.com/OnStas/jenkins_test.git", "test"].execute()  
+                  //  git fetch origin pull/$Branch/head:$BRANCHNAME
+                    ["git", "fetch", "origin", "pull/$Branch/head:test_br"].execute()  
                     pwd
                 }
               //  sh 'git clone       https://github.com/OnStas/jenkins_test.git test'
@@ -48,10 +49,10 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts(artifacts: '**/jenkins_test/artifact.txt', followSymlinks: false)
+            archiveArtifacts(artifacts: '**/artifact.txt', followSymlinks: false)
         }
         failure {
-            archiveArtifacts(artifacts: '**/jenkins_test/test_result.txt', followSymlinks: false)
+            archiveArtifacts(artifacts: '**/test_result.txt', followSymlinks: false)
         }
     }
 }
