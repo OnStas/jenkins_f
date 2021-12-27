@@ -1,4 +1,4 @@
-def PR_ID
+
 node("docker-jnlp-slave") {
     stage("Clone") {
         git branch: 'main',
@@ -8,7 +8,7 @@ node("docker-jnlp-slave") {
         def getRC = get.getResponseCode();
         if(getRC.equals(200)) {
         def html =get.getInputStream().getText();
-        PR_ID = html.split("number\":")[1].split(',')[0];
+        def PR_ID = html.split("number\":")[1].split(',')[0];
         println(PR_ID);
         } 
         //echo ${Branch}
