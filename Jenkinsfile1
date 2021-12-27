@@ -6,8 +6,7 @@ pipeline {
     stages {
         stage('Clone') {
               steps {
-                //git branch: 'main',
-                  //  url: 'https://github.com/OnStas/jenkins_test.git'
+                 git url: 'https://github.com/OnStas/jenkins_test.git'
                 script {
                     // GET
                     
@@ -25,7 +24,7 @@ pipeline {
                    // ["git", "clone", "https://github.com/OnStas/jenkins_test.git", "test"].execute()  
                     pwd
                 }
-                sh 'git clone       https://github.com/OnStas/jenkins_test.git test'
+              //  sh 'git clone       https://github.com/OnStas/jenkins_test.git test'
                //echo PR-"${Branch}"
               // git branch: 'PR-13', url: 'https://github.com/OnStas/jenkins_test.git'      
                sh 'printenv'
@@ -34,14 +33,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cd test'
+                //sh 'cd test'
                 sh 'chmod +x build.sh'
                 sh '.build.sh 2>&1 | tee artifact.txt'
             }
         }
         stage('Test') {
             steps {
-                sh 'cd test'
+               // sh 'cd test'
                 sh 'chmod +x test.sh'
                 sh 'sh test.sh 2>&1 | tee test_result.txt' 
             }
