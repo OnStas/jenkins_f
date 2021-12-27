@@ -1,5 +1,5 @@
 
-node("docker-jnlp-slave") {
+node("docker-slave-ssh") {
 def PR_ID
     stage("Clone") {
         git branch: 'main',
@@ -15,10 +15,10 @@ def PR_ID
         //echo ${Branch}
        // echo "${PR_ID}"
        echo "${PR_ID}"
-       // git fetch origin pull/$PR_ID/head:test_br
-        sh "git fetch origin"
-        sh "git checkout -b $PR_ID origin/$PR_ID"
-        sh "git merge main"
+       sh "git fetch origin pull/$PR_ID/head:test_br"
+        //sh "git fetch origin"
+       // sh "git checkout -b $PR_ID origin/$PR_ID"
+       // sh "git merge main"
         sh 'printenv'      
     }
     
