@@ -29,8 +29,5 @@ pipeline {
         failure {
             archiveArtifacts(artifacts: '**/test_result.txt', followSymlinks: false)
         }
-        success{
-            sh 'git push origin main'
-        }
     }
 }
