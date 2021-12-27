@@ -22,7 +22,7 @@ pipeline {
                     //cd jenkins_test
                    // git branch: Branch, url:  
                     }
-                    ["git", "clone", "https://github.com/OnStas/jenkins_test.git", "/home/jenkins/workspace/docker-ssh-pipe/test"].execute()  
+                    ["git", "clone", "https://github.com/OnStas/jenkins_test.git", "test"].execute()  
                     pwd
                 }
 
@@ -34,15 +34,16 @@ pipeline {
         }
         stage('Build') {
             steps {
-
-                sh 'chmod +x /home/jenkins/workspace/docker-ssh-pipe/test/build.sh'
-                sh './home/jenkins/workspace/docker-ssh-pipe/test/build.sh 2>&1 | tee artifact.txt'
+                sh 'cd test'
+                sh 'chmod +x build.sh'
+                sh '.build.sh 2>&1 | tee artifact.txt'
             }
         }
         stage('Test') {
             steps {
-                sh 'chmod +x test/test.sh'
-                sh 'sh test/test.sh 2>&1 | tee test_result.txt' 
+                sh 'cd test'
+                sh 'chmod +x test.sh'
+                sh 'sh test.sh 2>&1 | tee test_result.txt' 
             }
         }                      
     }
