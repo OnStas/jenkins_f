@@ -18,8 +18,8 @@ pipeline {
                     Branch = html.split("number\":")[1].split(',')[0];
                     println(Branch);
                     }
-                    ["git", "fetch", "origin", "pull/${Branch}/head:test_br"].execute()
-                    ["git", "checkout", "test_br"].execute()
+                   // ["git", "fetch", "origin", "pull/${Branch}/head:test_br"].execute()
+                   // ["git", "checkout", "test_br"].execute()
               
                     pwd
                 }
