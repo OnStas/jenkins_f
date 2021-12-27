@@ -9,6 +9,7 @@ pipeline {
                   //  url: 'https://github.com/OnStas/jenkins_test.git'
                 script {
                     // GET
+                    
                     def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
                     def getRC = get.getResponseCode();
                     //println(getRC);
@@ -16,18 +17,18 @@ pipeline {
                     def html =get.getInputStream().getText();
                     Branch = html.split("ref\":")[1].split(',')[0];
                     println(Branch);
-                    //sh 'git clone --branch $Branch https://github.com/OnStas/jenkins_test.gi'
-                    //sh 'git checkout ${Branch}'
+                    git clone https://github.com/OnStas/jenkins_test.git
+                    cd jenkins_test
                     }
-                    //sh 'git clone --branch $Branch https://github.com/OnStas/jenkins_test.gi'
+                    //sh 'git clone --branch $Branch https://github.com/OnStas/jenkins_test.git'
                     //sh 'git checkout ${Branch}'
                 }
                echo 'Branch = $Branch'
                echo "${Branch}"
                              
                sh 'printenv'
-                git branch: '${Branch}',
-                    url: 'https://github.com/OnStas/jenkins_test.git'
+               // git branch: '${Branch}',
+                 //   url: 'https://github.com/OnStas/jenkins_test.git'
             }        
         }
         stage('Build') {
