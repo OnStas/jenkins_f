@@ -25,7 +25,7 @@ pipeline {
                 }
 
                echo PR-"${Branch}"
-               git branch: "${Branch}", url: 'https://github.com/OnStas/jenkins_test.git'      
+               git branch: 'PR-13', url: 'https://github.com/OnStas/jenkins_test.git'      
                sh 'printenv'
 
             }        
