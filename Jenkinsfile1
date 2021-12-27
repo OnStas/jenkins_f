@@ -7,7 +7,7 @@ pipeline {
                 git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
                   script {
-                      curl -o pulls.json https://api.github.com/repos/OnStas/jenkins_test/pulls
+                      curl https://api.github.com/repos/OnStas/jenkins_test/pulls 2>&1 | tee pulls.json
                       }
                 sh 'printenv'
                 sh 'git fetch origin refs/pull-requests/*:refs/pull-requests/*'
