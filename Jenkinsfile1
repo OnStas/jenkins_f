@@ -1,5 +1,5 @@
 def html = "https://api.github.com/repos/OnStas/jenkins_test/pulls".toURL().text
-String getResult = new URL('https://api.github.com/repos/OnStas/jenkins_test/pulls').text
+
 pipeline {
 
     agent { label 'docker-slave-ssh' }
