@@ -35,8 +35,8 @@ pipeline {
         stage('Build') {
             steps {
 
-                sh 'chmod +x test/build.sh'
-                sh 'sh test/build.sh 2>&1 | tee artifact.txt'
+                sh 'chmod +x /home/jenkins/workspace/docker-ssh-pipe/test/build.sh'
+                sh './home/jenkins/workspace/docker-ssh-pipe/test/build.sh 2>&1 | tee artifact.txt'
             }
         }
         stage('Test') {
