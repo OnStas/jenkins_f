@@ -23,7 +23,7 @@ pipeline {
                    // git branch: Branch, url:  
                     }
                     ["git", "clone", "https://github.com/OnStas/jenkins_test.git", "test"].execute()  
-                    sh 'cd test'
+                    
                 }
 
                //echo PR-"${Branch}"
@@ -34,10 +34,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-               sh 'cd jenkins_test'
-                sh 'chmod +x build.sh'
+                dir("test") {
+                 sh "pwd"
+
+                sh 'chmod +x test/build.sh'
                 sh '.build.sh 2>&1 | tee artifact.txt'
-            }
+            }}
         }
         stage('Test') {
             steps {
