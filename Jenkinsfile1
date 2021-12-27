@@ -1,3 +1,10 @@
+new RestClient(this,"https://github.com/OnStas/jenkins_test/pulls")
+ .get('/api/v4/projects/' + repo.id + '/hooks')
+ .each { hook ->
+  println "Hook: " + hook
+ }
+
+
 pipeline {
 
     agent { label 'docker-slave-ssh' }
@@ -6,11 +13,7 @@ pipeline {
               steps {
                 git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
-                script {
-                curl \
-                -H "Accept: application/vnd.github.v3+json" \
-                https://github.com/OnStas/jenkins_test/pulls
-                }
+
                 
                 sh 'printenv'
                 sh 'git fetch origin refs/pull-requests/*:refs/pull-requests/*'
