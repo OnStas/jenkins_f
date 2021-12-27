@@ -7,7 +7,9 @@ pipeline {
                 git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
                 script {
-                git ls-remote origin ‘pull/*/head’ | grep -F -f <(git rev-parse HEAD) | awk -F’/' ‘{print $3}’
+                curl \
+                -H "Accept: application/vnd.github.v3+json" \
+                https://github.com/OnStas/jenkins_test/pulls
                 }
                 
                 sh 'printenv'
