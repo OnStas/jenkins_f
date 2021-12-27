@@ -6,12 +6,14 @@ pipeline {
     stages {
         stage('Clone') {
               steps {
-                sh 'apt install curl'
-                sh 'curl -V'
                 git branch: 'main',
                     url: 'https://github.com/OnStas/jenkins_test.git'
-                sh 'curl -o pulls.json https://api.github.com/repos/OnStas/jenkins_test/pulls'
-                
+                  script {
+                    final String url = "https://api.github.com/repos/OnStas/jenkins_test/pulls"
+
+                    final String response = sh(script: "curl -s $url", returnStdout: true).trim()
+
+                    echo response}
                 sh 'printenv'
                 sh 'git fetch origin refs/pull-requests/*:refs/pull-requests/*'
                 sh 'git name-rev --name-only --refs="refs/pull-requests/*/from" HEAD'
