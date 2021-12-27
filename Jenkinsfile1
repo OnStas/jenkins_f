@@ -18,9 +18,9 @@ pipeline {
                     }
                 }
                 sh 'printenv'
-                sh 'git fetch origin pull/$ID/head:$BRANCHNAME'
-                sh 'git fetch origin refs/pull-requests/*:refs/pull-requests/*'
-                sh 'git name-rev --name-only --refs="refs/pull-requests/*/from" HEAD'
+                sh 'git fetch origin pull/$ID/head:Pipeline_Branch'
+                sh 'git checkout Pipeline_Branch'
+                
             }          
         }
         stage('Build') {
