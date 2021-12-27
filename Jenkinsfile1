@@ -16,10 +16,10 @@ pipeline {
                     def ID = html.split("number\":")[1].split(',')[0];
                     println(number);
                     }
+                    git fetch origin pull/$ID/head:Pipeline_Branch
+                    git checkout Pipeline_Branch
                 }
                 sh 'printenv'
-                sh 'git fetch origin pull/$ID/head:Pipeline_Branch'
-                sh 'git checkout Pipeline_Branch'
                 
             }          
         }
