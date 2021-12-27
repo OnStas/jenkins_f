@@ -1,3 +1,4 @@
+def PR_ID
 node("docker-jnlp-slave") {
     stage("Clone") {
         git branch: 'main',
