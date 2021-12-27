@@ -17,35 +17,27 @@ pipeline {
                     def html =get.getInputStream().getText();
                     Branch = html.split("number\":")[1].split(',')[0];
                     println(Branch);
-                    //git clone 'https://github.com/OnStas/jenkins_test.git'
-                    //cd jenkins_test
-                   // git branch: Branch, url:  
                     }
-                  //  git fetch origin pull/$Branch/head:$BRANCHNAME
                     ["git", "fetch", "origin", "pull/${Branch}/head:test_br"].execute()
                     ["git", "checkout", "test_br"].execute()
               
                     pwd
                 }
-              //  sh 'git clone       https://github.com/OnStas/jenkins_test.git test'
-               //echo PR-"${Branch}"
-              // git branch: 'PR-13', url: 'https://github.com/OnStas/jenkins_test.git'      
+   
                sh 'printenv'
               
             }        
         }
         stage('Build') {
             steps {
-                //sh 'cd test'
                 sh 'chmod +x build.sh'
                 sh '.build.sh 2>&1 | tee artifact.txt'
             }
         }
         stage('Test') {
             steps {
-               // sh 'cd test'
                 sh 'chmod +x test.sh'
-                sh 'sh test.sh 2>&1 | tee test_result.txt' 
+                sh 'test.sh 2>&1 | tee test_result.txt' 
             }
         }                      
     }
