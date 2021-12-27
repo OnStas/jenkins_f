@@ -22,7 +22,9 @@ pipeline {
                    // git branch: Branch, url:  
                     }
                   //  git fetch origin pull/$Branch/head:$BRANCHNAME
-                    ["git", "fetch", "origin", "pull/$Branch/head:test_br"].execute()  
+                    ["git", "fetch", "origin", "pull/${Branch}/head:test_br"].execute()
+                    ["git", "checkout", "test_br"].execute()
+              
                     pwd
                 }
               //  sh 'git clone       https://github.com/OnStas/jenkins_test.git test'
