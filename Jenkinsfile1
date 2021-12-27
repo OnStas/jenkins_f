@@ -25,9 +25,9 @@ pipeline {
                 }
                echo 'Branch = $Branch'
                echo "${Branch}"
-               git branch: '${Branch}', url: 'https://github.com/OnStas/jenkins_test.git'      
+               git branch: 'fix-125', url: 'https://github.com/OnStas/jenkins_test.git'      
                sh 'printenv'
-              //  git branch: '${Branch}',
+              //  git branch: '',
                  //   url: 'git@github.com:OnStas/jenkins_test.git'
             }        
         }
