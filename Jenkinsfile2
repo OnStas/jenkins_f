@@ -3,8 +3,8 @@ node("docker-slave-ssh") {
 
     stage("Clone") {
         def PR_ID
-      //  git branch: 'main',
-      //          url: 'https://github.com/OnStas/jenkins_test.git'
+      git branch: 'main',
+           url: 'https://github.com/OnStas/jenkins_test.git'
          
         
         def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
@@ -20,13 +20,11 @@ node("docker-slave-ssh") {
         } 
 
         echo "${PR_ID}"
-         git branch: '$PR_ID',
-               url: 'https://github.com/OnStas/jenkins_test.git'
-
+        sh "git fetch origin pull/$PR_ID/head:test_br"
+        sh "git checkout test_br"
 
     
-
-       // sh 'printenv'      
+          sh 'printenv'      
     }
     
     stage("Build") {
