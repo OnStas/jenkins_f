@@ -1,6 +1,6 @@
 node("docker-slave-ssh") {
     stage('Clone') {  
-        sh 'prinenv'
+        sh 'printenv'
         sh 'git clone -b main https://github.com/OnStas/jenkins_test.git'
     }    
     stage('Build') {
