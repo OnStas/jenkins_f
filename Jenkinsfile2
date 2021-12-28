@@ -22,7 +22,7 @@ node("docker-slave-ssh") {
         echo "${PR_ID}"
 
     //     ["git", "clone", "--branch", "$PR_ID", "https://github.com/OnStas/jenkins_test.gitr"].execute()
-         sh "git clone --branch $PR_ID https://github.com/OnStas/jenkins_test.gitr"
+         sh "git clone --branch $PR_ID https://github.com/OnStas/jenkins_test.git"
          //  
       //   sh "git fetch origin pull/$PR_ID/head:test_br"
        //  sh 'sleep 10'
