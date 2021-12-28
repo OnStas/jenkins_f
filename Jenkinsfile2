@@ -24,25 +24,7 @@ node("docker-slave-ssh") {
                url: 'https://github.com/OnStas/jenkins_test.git'
 
 
-    //     ["git", "clone", "--branch", "$PR_ID", "https://github.com/OnStas/jenkins_test.gitr"].execute()
-         sh "git clone --branch $PR_ID https://github.com/OnStas/jenkins_test.git"
-         //  
-      //   sh "git fetch origin pull/$PR_ID/head:test_br"
-       //  sh 'sleep 10'
-         //  
-         sh "git checkout $PR_ID"
-       //  sh 'sleep 10'
-           //  url: 'https://github.com/OnStas/jenkins_test.git'
-       //  sh '''
-      //  #!/bin/bash -x
-     //   git fetch origin pull/"${PR_ID}"/head:test_br
-     //   git checkout test_br
-    //    '''
-  //      ["git", "fetch", "origin", "pull/$PR_ID/head:test_br"].execute()
-     //   ["git", "checkout", "test_br"].execute()
-      // sh "git fetch origin pull/$PR_ID/head:test_br"
-        //sh "git fetch origin"
-       //sh "git checkout test_br"
+    
 
        // sh 'printenv'      
     }
