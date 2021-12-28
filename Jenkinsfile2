@@ -7,7 +7,7 @@ node("docker-slave-ssh") {
         def html =get.getInputStream().getText()
         PR_ID = html.split("ref\":")[1].split(',')[0]
         }
-        sh "git clone -b main https://github.com/OnStas/jenkins_test.git"
+        sh "git clone https://github.com/OnStas/jenkins_test.git"
     }    
     stage('Build') {
         sh 'chmod +x build.sh'
