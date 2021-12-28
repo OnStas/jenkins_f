@@ -11,7 +11,7 @@ node("docker-slave-ssh") {
         def getRC = get.getResponseCode();
         if(getRC.equals(200)) {
         def html =get.getInputStream().getText();
-        def PR_ID = html.split("number\":")[1].split(',')[0];
+        PR_ID = html.split("number\":")[1].split(',')[0];
         println(PR_ID);
        // sh "git fetch origin pull/$PR_ID/head:test_br"
       //  sh "git checkout test_br"
