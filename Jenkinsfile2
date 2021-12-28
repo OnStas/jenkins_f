@@ -1,9 +1,9 @@
 node("docker-slave-ssh") {
-    stage("Clone") {  
-       echo "${PR_ID}"
-       sh "git clone -b main https://github.com/OnStas/jenkins_test.git"
+    stage('Clone') {  
+        sh 'prinenv'
+        sh 'git clone -b main https://github.com/OnStas/jenkins_test.git'
     }    
-    stage("Build") {
+    stage('Build') {
         sh 'chmod +x build.sh'
         sh './build.sh 2>&1 | tee artifact.txt'
     }    
