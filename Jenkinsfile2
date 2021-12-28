@@ -5,11 +5,10 @@ node("docker-slave-ssh") {
         def getRC = get.getResponseCode()
         if(getRC.equals(200)) {
         def html =get.getInputStream().getText()
-        PR_ID = html.split("number\":")[1].split(',')[0]
+        PR_ID = html.split("ref\":")[1].split(',')[0]
         }
-        echo ${PR_ID}
         sh 'printenv'
-        sh 'git clone -b ${PR_ID} https://github.com/OnStas/jenkins_test.git'
+        sh "git clone -b $PR_ID https://github.com/OnStas/jenkins_test.git"
     }    
     stage('Build') {
         sh 'chmod +x build.sh'
