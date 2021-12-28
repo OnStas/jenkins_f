@@ -16,17 +16,17 @@ node("docker-slave-ssh") {
        // sh "git fetch origin pull/$PR_ID/head:test_br"
       //  sh "git checkout test_br"
        // ["git", "fetch", "origin", "pull/$PR_ID/head:test_br"].execute()
-        ["git", "checkout", "$PR_ID"].execute()
+       // ["git", "checkout", "$PR_ID"].execute()
         } 
 
         echo "${PR_ID}"
      
          //  
-         sh "git fetch origin pull/$PR_ID/head:test_br"
-         sh 'sleep 10'
+      //   sh "git fetch origin pull/$PR_ID/head:test_br"
+       //  sh 'sleep 10'
          //  
-         sh "git checkout test_br"
-         sh 'sleep 10'
+         sh "git checkout $PR_ID"
+       //  sh 'sleep 10'
            //  url: 'https://github.com/OnStas/jenkins_test.git'
        //  sh '''
       //  #!/bin/bash -x
