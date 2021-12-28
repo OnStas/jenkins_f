@@ -19,7 +19,7 @@ def PR_ID
            //  url: 'https://github.com/OnStas/jenkins_test.git'
          sh '''
         #!/bin/bash -x
-        git fetch origin pull/${PR_ID}/head:test_br
+        git fetch origin pull/"${PR_ID}"/head:test_br
         git checkout test_br
         '''
   //      ["git", "fetch", "origin", "pull/$PR_ID/head:test_br"].execute()
