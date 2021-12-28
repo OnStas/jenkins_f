@@ -17,9 +17,9 @@ def PR_ID
        echo "${PR_ID}"
         //["git", "fetch", "origin pull/$Branch/head:test_br"].execute()
         //["git", "checkout", "test_br"].execute()
-       sh '''git fetch origin pull/$PR_ID/head:test_br'''
+       sh "git fetch origin pull/$PR_ID/head:test_br"
         //sh "git fetch origin"
-       sh "git checkout -b test_br"
+       sh "git checkout test_br"
        // sh "git merge main"
         sh 'printenv'      
     }
