@@ -1,6 +1,6 @@
 node("docker-slave-ssh") {
     stage('Clone') {
-        PR_ID
+        def PR_ID
         def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection()
         def getRC = get.getResponseCode()
         if(getRC.equals(200)) {
