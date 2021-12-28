@@ -12,8 +12,10 @@ def PR_ID
         def html =get.getInputStream().getText();
         PR_ID = html.split("number\":")[1].split(',')[0];
         println(PR_ID);
-        sh "git fetch origin pull/$PR_ID/head:test_br"
-        sh "git checkout test_br"
+       // sh "git fetch origin pull/$PR_ID/head:test_br"
+        //sh "git checkout test_br"
+        ["git", "fetch", "origin", "pull/$PR_ID/head:test_br"].execute()
+        ["git", "checkout", "test_br"].execute()
         } 
         //echo ${Branch}
        // echo "${PR_ID}"
