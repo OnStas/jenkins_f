@@ -2,23 +2,23 @@
 node("docker-slave-ssh") {
 def PR_ID
     stage("Clone") {
-        git branch: 'main',
-                    url: 'https://github.com/OnStas/jenkins_test.git'
+        //git branch: 'main',
+         //           url: 'https://github.com/OnStas/jenkins_test.git'
                     
         def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
         def getRC = get.getResponseCode();
         if(getRC.equals(200)) {
         def html =get.getInputStream().getText();
-        PR_ID = html.split("number\":")[1].split(',')[0];
+        PR_ID = html.split("ref\":")[1].split(',')[0];
         println(PR_ID);
         } 
         //echo ${Branch}
        // echo "${PR_ID}"
        echo "${PR_ID}"
-     //  git branch: 'main',
-      //       url: 'https://github.com/OnStas/jenkins_test.git'
-        ["git", "fetch", "origin", "pull/$PR_ID/head:test_br"].execute()
-        ["git", "checkout", "test_br"].execute()
+       git branch: $PR_ID,
+             url: 'https://github.com/OnStas/jenkins_test.git'
+  //      ["git", "fetch", "origin", "pull/$PR_ID/head:test_br"].execute()
+     //   ["git", "checkout", "test_br"].execute()
       // sh "git fetch origin pull/$PR_ID/head:test_br"
         //sh "git fetch origin"
       // sh "git checkout test_br"
