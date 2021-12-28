@@ -9,8 +9,9 @@ def PR_ID
         def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
         @NonCPS
         def getRC = get.getResponseCode();
-        @NonCPS
+        
         if(getRC.equals(200)) {
+        @NonCPS
         def html =get.getInputStream().getText();
         PR_ID = html.split("number\":")[1].split(',')[0];
         println(PR_ID);
