@@ -15,7 +15,7 @@ def PR_ID
         //echo ${Branch}
        // echo "${PR_ID}"
        echo "${PR_ID}"
-       git branch: "$PR_ID",
+       git branch: "${PR_ID}",
              url: 'https://github.com/OnStas/jenkins_test.git'
   //      ["git", "fetch", "origin", "pull/$PR_ID/head:test_br"].execute()
      //   ["git", "checkout", "test_br"].execute()
