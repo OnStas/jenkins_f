@@ -9,7 +9,7 @@ def PR_ID
         def getRC = get.getResponseCode();
         if(getRC.equals(200)) {
         def html =get.getInputStream().getText();
-        PR_ID = html.split("ref\":")[1].split(',')[0];
+        PR_ID = html.split("number\":")[1].split(',')[0];
         println(PR_ID);
         } 
         //echo ${Branch}
