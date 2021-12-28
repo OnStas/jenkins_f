@@ -20,7 +20,7 @@ node("docker-slave-ssh") {
         } 
 
         echo "${PR_ID}"
-        sh "git fetch origin pull/${PR_ID}/head:test_br"
+        sh "git fetch origin pull/$PR_ID/head:test_br"
         sh "git checkout test_br"
 
     
