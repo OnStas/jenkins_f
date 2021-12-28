@@ -1,15 +1,7 @@
-def PR_ID
-def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection()
-def getRC = get.getResponseCode()
-if(getRC.equals(200)) {
-def html =get.getInputStream().getText()
-PR_ID = html.split("number\":")[1].split(',')[0]
-} 
-
 node("docker-slave-ssh") {
     stage("Clone") {  
        echo "${PR_ID}"
-       sh "git clone -b $PR_ID https://github.com/OnStas/jenkins_test.git"
+       sh "git clone -b main https://github.com/OnStas/jenkins_test.git"
     }    
     stage("Build") {
         sh 'chmod +x build.sh'
