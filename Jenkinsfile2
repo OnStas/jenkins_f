@@ -5,16 +5,15 @@ def PR_ID
         git branch: 'main',
                 url: 'https://github.com/OnStas/jenkins_test.git'
          
-        @NonCPS
-        def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
-        @NonCPS
-        def getRC = get.getResponseCode();
         
+        def get = new URL("https://api.github.com/repos/OnStas/jenkins_test/pulls").openConnection();
+        def getRC = get.getResponseCode();
         if(getRC.equals(200)) {
-        @NonCPS
         def html =get.getInputStream().getText();
         PR_ID = html.split("number\":")[1].split(',')[0];
         println(PR_ID);
+        sh "git fetch origin pull/$PR_ID/head:test_br"
+        sh "git checkout test_br"
         } 
         //echo ${Branch}
        // echo "${PR_ID}"
