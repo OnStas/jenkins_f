@@ -20,7 +20,7 @@ node("docker-slave-ssh") {
         } 
 
         echo "${PR_ID}"
-         git branch: $PR_ID,
+         git branch: '$PR_ID',
                url: 'https://github.com/OnStas/jenkins_test.git'
 
 
