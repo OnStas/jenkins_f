@@ -7,7 +7,6 @@ node("docker-slave-ssh") {
         def html =get.getInputStream().getText()
         PR_ID = html.split("ref\":")[1].split(',')[0]
         }
-        sh 'printenv'
         sh "git clone -b $PR_ID https://github.com/OnStas/jenkins_test.git"
     }    
     stage('Build') {
